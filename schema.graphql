@@ -1,6 +1,5 @@
-type ExampleEntity @entity {
+type ListingChange @entity {
   id: ID!
-  count: BigInt!
   token: BigInt! # uint256
   price: BigInt! # uint256
 }
