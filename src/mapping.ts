@@ -1,9 +1,23 @@
+import { BigInt } from "@graphprotocol/graph-ts";
 import { ListingUpdate } from "../generated/Market/Market"
-import { ListingChange } from "../generated/schema"
+import { ListedToken } from "../generated/schema"
 
 export function handleListingUpdate(event: ListingUpdate): void {
-  let id = event.transaction.hash.toHex() + event.logIndex.toString();
-  let update = new ListingChange(id);
-  update.price = event.params.price
-  update.save()
+  let id = event.params.token.toHex()
+  let  token = ListedToken.load(id);
+  if (token == null){
+    token= new ListedToken(id);
+    token.price = event.params.price;
+    token.tokenID = event.params.token;
+  }
+  
+  if (event.params.price === new BigInt(0)){
+    token = null;
+    token.save()
+  }
+  else{
+    token.save()
+  }
+  
+
 }
