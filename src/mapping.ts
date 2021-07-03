@@ -1,17 +1,18 @@
-import { BigInt } from "@graphprotocol/graph-ts";
-import { ListingUpdate, Market } from "../generated/Market/Market"
+import { Address, BigInt } from "@graphprotocol/graph-ts";
+import { Transfer } from "../generated/WXDAI/WXDAI"
+import { ListingUpdate } from "../generated/Market/Market"
 import { ListedToken, Fee } from "../generated/schema"
 
-export function handleBlockWithCall(contract: Market): void{
-  let feeStored = Fee.load("0");
-  if (feeStored == null){
-    feeStored = new Fee("0");
-  }
-  if(feeStored.fee != contract.fee()){
+export function handleTransfer(event: Transfer): void {
+  if(event.params.src.toString()=="0xa954bae58FBE108795eCf188299DF885214786A1"){  
+    let id = event.block.timestamp.toString()
+    if (Fee.load(id) ==null){
+      let feeStored = new Fee(id);
+      feeStored.fee=event.params.wad
       feeStored.save()
+    }
   }
 
-  
 }
 
 export function handleListingUpdate(event: ListingUpdate): void {

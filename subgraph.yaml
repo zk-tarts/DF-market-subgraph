@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0xa954bae58FBE108795eCf188299DF885214786A1"
       abi: Market
-      startBlock: 16880972
+      startBlock: 16892757
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -23,8 +23,24 @@ dataSources:
       eventHandlers:
         - event: ListingUpdate(indexed uint256,indexed uint256)
           handler: handleListingUpdate
-      blockHandlers:
-        - handler: handleBlockWithCall
-          filter:
-            kind: call
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: WXDAI
+    network: xdai
+    source:
+      address: "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d"
+      abi: WXDAI
+      startBlock: 16892757
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: WXDAI
+          file: ./abis/WXDAI.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
       file: ./src/mapping.ts
