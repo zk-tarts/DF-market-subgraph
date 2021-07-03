@@ -12,5 +12,9 @@
   "dependencies": {
     "@graphprotocol/graph-cli": "0.20.1",
     "@graphprotocol/graph-ts": "0.20.0"
-  }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zk-FARTs/DF-market-subgraph.git",
+  "author": "zk-FARTs <myfulllegalname@protonmail.com>"
 }

@@ -8,7 +8,7 @@ dataSources:
     name: Market
     network: xdai
     source:
-      address: "0x09B71a0AdB6911994f5D7733fC89802328380C14"
+      address: "0x678e993a531c8Fc93Ad4aeAEf099b0C16bA7058f"
       abi: Market
       startBlock: 16880972
     mapping:
