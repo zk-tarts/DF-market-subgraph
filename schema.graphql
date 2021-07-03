@@ -1,5 +1,6 @@
 
 type ListingChange @entity {
-  id: ID! # uint256
+  id: ID!
+  token: BigInt! # uint256
   price: BigInt! # uint256
 }
