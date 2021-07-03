@@ -1,6 +1,15 @@
 import { BigInt } from "@graphprotocol/graph-ts";
-import { ListingUpdate } from "../generated/Market/Market"
-import { ListedToken } from "../generated/schema"
+import { ListingUpdate, Market } from "../generated/Market/Market"
+import { ListedToken, Fee } from "../generated/schema"
+
+export function handleBlockWithCall(contract: Market): void{
+  let feeStored = Fee.load("0");
+  if (feeStored == null){
+    feeStored = new Fee("0");
+    feeStored.fee = contract.fee();
+    feeStored.save()
+  }
+}
 
 export function handleListingUpdate(event: ListingUpdate): void {
   let id = event.params.token.toHex()
@@ -21,3 +30,4 @@ export function handleListingUpdate(event: ListingUpdate): void {
   
 
 }
+

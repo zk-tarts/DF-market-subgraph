@@ -8,7 +8,7 @@ dataSources:
     name: Market
     network: xdai
     source:
-      address: "0x678e993a531c8Fc93Ad4aeAEf099b0C16bA7058f"
+      address: "0xa954bae58FBE108795eCf188299DF885214786A1"
       abi: Market
       startBlock: 16880972
     mapping:
@@ -23,4 +23,8 @@ dataSources:
       eventHandlers:
         - event: ListingUpdate(indexed uint256,indexed uint256)
           handler: handleListingUpdate
+      blockHandlers:
+        - handler: handleBlockWithCall
+          filter:
+            kind: call
       file: ./src/mapping.ts

@@ -4,3 +4,8 @@ type ListedToken @entity {
   tokenID: BigInt # uint256
   price: BigInt # uint256
 }
+
+type Fee @entity {
+  id: ID!
+  fee: BigInt # uint256
+}
