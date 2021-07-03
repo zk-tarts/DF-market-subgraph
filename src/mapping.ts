@@ -6,9 +6,12 @@ export function handleBlockWithCall(contract: Market): void{
   let feeStored = Fee.load("0");
   if (feeStored == null){
     feeStored = new Fee("0");
-    feeStored.fee = contract.fee();
-    feeStored.save()
   }
+  if(feeStored.fee != contract.fee()){
+      feeStored.save()
+  }
+
+  
 }
 
 export function handleListingUpdate(event: ListingUpdate): void {
