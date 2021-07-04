@@ -8,9 +8,9 @@ dataSources:
     name: Market
     network: xdai
     source:
-      address: "0xa954bae58FBE108795eCf188299DF885214786A1"
+      address: "0x3Fb840EbD1fFdD592228f7d23e9CA8D55F72F2F8"
       abi: Market
-      startBlock: 16892757
+      startBlock: 16895823
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -20,27 +20,9 @@ dataSources:
       abis:
         - name: Market
           file: ./abis/Market.json
-      eventHandlers:
-        - event: ListingUpdate(indexed uint256,indexed uint256)
-          handler: handleListingUpdate
-      file: ./src/mapping.ts
-  - kind: ethereum/contract
-    name: WXDAI
-    network: xdai
-    source:
-      address: "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d"
-      abi: WXDAI
-      startBlock: 16892757
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - Transfer
-      abis:
-        - name: WXDAI
-          file: ./abis/WXDAI.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
+      callHandlers:
+        - function: list(uint256,uint256)
+          handler: handleList
+      blockHandlers:
+        - handler: handleBlock
       file: ./src/mapping.ts

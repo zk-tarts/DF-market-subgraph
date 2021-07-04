@@ -21,25 +21,6 @@
 	  ]
 	},
 	{
-	  "type": "event",
-	  "name": "ListingUpdate",
-	  "inputs": [
-		{
-		  "type": "uint256",
-		  "name": "token",
-		  "internalType": "uint256",
-		  "indexed": true
-		},
-		{
-		  "type": "uint256",
-		  "name": "price",
-		  "internalType": "uint256",
-		  "indexed": true
-		}
-	  ],
-	  "anonymous": false
-	},
-	{
 	  "type": "function",
 	  "stateMutability": "view",
 	  "outputs": [

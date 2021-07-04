@@ -1,9 +1,10 @@
 # DF-market-subgraph
 
- shows  
-  - the CURRENT fee
-  - the CURRENT tokens listed and their prices
+currently broken (help!!!)
 
-the fee will not show up until at least 1 contract call has been made  
+should show  
+  - the fees for each round
+  - the tokens listed and their prices
+  
 
 check it out at https://thegraph.com/explorer/subgraph/zk-farts/dfartifactmarket
