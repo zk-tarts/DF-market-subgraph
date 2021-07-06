@@ -10,3 +10,4 @@ type Fee @entity {
   id: ID! # block number
   fee: BigInt! # uint256
 }
+ 
