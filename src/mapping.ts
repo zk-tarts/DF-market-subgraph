@@ -1,28 +1,23 @@
-import { Bytes, ethereum, log, store } from "@graphprotocol/graph-ts";
+import { store } from "@graphprotocol/graph-ts";
 import { ListedToken } from "../generated/schema";
-
-export function handleBuy(tx: ethereum.Transaction): void {
-  let id = tx.hash.toHex()
+import { BuyCall, ListCall, UnlistCall } from "../generated/Market/Market"
+export function handleBuy(tx: BuyCall): void {
+  let id = tx.transaction.hash.toHex()
   store.remove('ListedToken',id)
 }
 
-export function handleUnist(tx: ethereum.Transaction): void {
-  let id = tx.hash.toHex()
+export function handleUnist(tx: UnlistCall): void {
+  let id = tx.transaction.hash.toHex()
   store.remove('ListedToken',id)
 }
 
-export function handleList(tx: ethereum.Transaction): void {
-  let id = tx.hash.toHex()
-  let token = ListedToken.load(id)
-  token = new ListedToken(id)
-  let x = tx.input.toHex()
-  {
-   // let input = tx.input.subarray(3) as Bytes // remove first 4 bytes: function selector
-    //let decodedInput = ethereum.decode("(uint256,uint256)",tx.input) // abi decode
-    //token.tokenID = decodedInput.toBigIntArray()[0]
-    //token.owner = tx.from.toHexString()
-    //token.price = decodedInput.toBigIntArray()[1]
-  }
+export function handleList(tx: ListCall): void {
+  let id = tx.transaction.hash.toHex()
+  let token = new ListedToken(id)
+  token.tokenID = tx.inputs.tokenID
+  token.owner = tx.from.toHexString()
+  token.price = tx.inputs.price
+  
   token.save()
 }
 
