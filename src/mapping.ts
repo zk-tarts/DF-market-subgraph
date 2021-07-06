@@ -15,10 +15,9 @@ export function handleList(tx: ethereum.Transaction): void {
   let id = tx.hash.toHex()
   let token = ListedToken.load(id)
   token = new ListedToken(id)
-  log.error('{}',[tx.input.toHex()])
   {
-    let input = tx.input.subarray(3) as Bytes // remove first 4 bytes: function selector
-    let decodedInput = ethereum.decode("(uint256,uint256)",input) // abi decode
+   // let input = tx.input.subarray(3) as Bytes // remove first 4 bytes: function selector
+    let decodedInput = ethereum.decode("(uint256,uint256)",tx.input) // abi decode
     token.tokenID = decodedInput.toBigIntArray()[0]
     token.owner = tx.from.toHexString()
     token.price = decodedInput.toBigIntArray()[1]
