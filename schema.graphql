@@ -1,13 +1,12 @@
 
 type ListedToken @entity {
-  id: ID!
-  tokenID: BigInt # uint256
-  price: BigInt   # uint256
+  id: ID! 
+  tokenID: BigInt! # uint256
+  price: BigInt!   # uint256
   owner:  String! # address
-  data: Bytes 
 }
 
 type Fee @entity {
-  id: ID!
-  fee: BigInt # uint256
+  id: ID! # block number
+  fee: BigInt! # uint256
 }

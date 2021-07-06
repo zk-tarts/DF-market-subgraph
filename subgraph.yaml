@@ -23,6 +23,10 @@ dataSources:
       callHandlers:
         - function: list(uint256,uint256)
           handler: handleList
+        - function: unlist(uint256)
+          handler: handleUnlist
+        - function: buy(uint256)
+          handler: handleBuy
       blockHandlers:
         - handler: handleBlock
       file: ./src/mapping.ts
