@@ -5,9 +5,3 @@ type ListedToken @entity {
   price: BigInt!   # uint256
   owner:  String! # address
 }
-
-type Fee @entity {
-  id: ID! # block number
-  fee: BigInt! # uint256
-}
- 
