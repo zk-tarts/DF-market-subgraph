@@ -27,6 +27,4 @@ dataSources:
           handler: handleUnlist
         - function: buy(uint256)
           handler: handleBuy
-      blockHandlers:
-        - handler: handleBlock
       file: ./src/mapping.ts
