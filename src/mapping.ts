@@ -14,15 +14,15 @@ export function handleUnist(tx: ethereum.Transaction): void {
 }
 
 export function handleList(tx: ethereum.Transaction): void {
-  {
-    let market = Market.bind(Address.fromString("0x3Fb840EbD1fFdD592228f7d23e9CA8D55F72F2F8"))
-    let fee = Fee.load(market.endDate().toString())
-    if (fee === null){
-      fee = new Fee(market.endDate().toString())
-      fee.fee = market.fee()
-      fee.save()
-    }
+
+  let market = Market.bind(Address.fromString("0x3Fb840EbD1fFdD592228f7d23e9CA8D55F72F2F8"))
+  let fee = Fee.load(market.endDate().toString())
+  if (fee === null){
+    fee = new Fee(market.endDate().toString())
+    fee.fee = market.fee()
+    fee.save()
   }
+
   let id = tx.hash.toHex()
   log.info('handleList with tx hash {}',[id])
   log.debug('input before decode: {}', [tx.input.toHex()])
