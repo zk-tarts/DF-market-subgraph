@@ -5,3 +5,10 @@ type ListedToken @entity {
   price: BigInt!   # uint256
   owner:  String! # address
 }
+
+type UnlistedToken @entity {
+  id: ID! 
+  tokenID: BigInt! # uint256
+  price: BigInt!   # uint256
+  owner:  String! # address 
+}
