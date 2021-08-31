@@ -12,3 +12,8 @@ type UnlistedToken @entity {
   price: BigInt!   # uint256
   owner:  String! # address 
 }
+
+type Sale @entity {
+  id: ID!
+  token: BigInt! @ uint256
+}

@@ -1,16 +1,24 @@
 import { store } from "@graphprotocol/graph-ts";
-import { ListedToken, UnlistedToken } from "../generated/schema";
+import { ListedToken, Sale, UnlistedToken } from "../generated/schema";
 import { BuyCall, ListCall, UnlistCall } from "../generated/Market/Market"
 export function handleBuy(tx: BuyCall): void {
   let id = tx.inputs.tokenID.toHexString()
   
   let x = ListedToken.load(id)
-  let token = new UnlistedToken(id)
-  token.tokenID = x.tokenID
-  token.owner = x.owner
-  token.price = x.price
   
-  token.save()
+  {  
+    let token = new UnlistedToken(id)
+    token.tokenID = x.tokenID
+    token.owner = x.owner
+    token.price = x.price
+    token.save()
+  }
+  {
+    let sale = new Sale(tx.transaction.hash.toHexString())
+    sale.token = tx.inputs.tokenID
+    sale.save()
+  }
+
   store.remove('ListedToken',id)
 }
 
