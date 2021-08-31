@@ -16,6 +16,8 @@ export function handleBuy(tx: BuyCall): void {
   {
     let sale = new Sale(tx.transaction.hash.toHexString())
     sale.token = tx.inputs.tokenID
+    sale.price = tx.transaction.value
+    sale.buyer = tx.from.toHexString()
     sale.save()
   }
 
